@@ -3,7 +3,7 @@
 
 library("rugarch")
 
-#load BTC, LTC, XMR, XRP from 'https://github.com/MarWaltz/Thesis/tree/master/Section 5/Data'
+#load BTC, LTC, XMR, XRP from 'https://github.com/MarWaltz/CoVaR-Paper/tree/master/Section 5/Data'
 rBTC = diff(log(BTC))
 rLTC = diff(log(LTC))
 rXMR = diff(log(XMR))
