@@ -13,10 +13,10 @@ TestPipe = function(vec){
   #Ljung-Box test: H_0: no serial correlation
   LB = Box.test(vec, lag = 8, type = c("Ljung-Box"))$p.value
   
-  #ADF-test: H_0: ts is non-stationary
+  #ADF-test: H_0: ts has unit root
   ADF = adf.test(vec, k = 8)$statistic
   
-  #PP-test: H_0: ts is non-stationary
+  #PP-test: H_0: ts has unit root
   PP = PP.test(vec)$statistic
   
   #KPSS-test: H_0: ts is (level) stationary
