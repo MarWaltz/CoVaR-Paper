@@ -258,3 +258,47 @@ for(i in seq_len(nrow(VulnerTable_05))){
 fin05 = rbind(as.vector(BivTable_05), as.vector(MultiTable_05), as.vector(VulnerTable_05))
 rownames(fin05) = c("Bivariate", "Multi", "Vulnerability")
 colnames(fin05) = rep(c("Clayton", "Gumbel"),3)
+
+#Bivariate CoVaR for alpha = beta = 0.01
+BivTable_01 = matrix(NA, nrow = 2, ncol = 3, dimnames = list(c("clayton", "gumbel"),
+                                                             c("0.25", "0.5", "0.75")))
+for(i in seq_len(nrow(BivTable_01))){
+  for(j in seq_len(ncol(BivTable_01))){
+    copula = rownames(BivTable_01)[i]
+    tau = as.numeric(colnames(BivTable_01)[j])
+    BivTable_01[i,j] = OneStudyBiv(copula = copula, tau = tau, seed = 10 + i*j,
+                                   alpha = 0.01, beta = 0.01)
+  }
+}
+
+#Multi CoVaR for alpha = beta = 0.01
+MultiTable_01 = matrix(NA, nrow = 2, ncol = 3, dimnames = list(c("clayton", "gumbel"),
+                                                               c("0.25", "0.5", "0.75")))
+for(i in seq_len(nrow(MultiTable_01))){
+  for(j in seq_len(ncol(MultiTable_01))){
+    copula = rownames(MultiTable_01)[i]
+    tau = as.numeric(colnames(MultiTable_01)[j])
+    MultiTable_01[i,j] = OneStudyMulti(copula = copula, tau = tau, seed = 1000 + i*j,
+                                       alpha = 0.01, beta = 0.01)
+  }
+}
+
+#Vulnerability CoVaR for alpha = beta = 0.01
+VulnerTable_01 = matrix(NA, nrow = 2, ncol = 3, dimnames = list(c("clayton", "gumbel"),
+                                                                c("0.25", "0.5", "0.75")))
+for(i in seq_len(nrow(VulnerTable_01))){
+  for(j in seq_len(ncol(VulnerTable_01))){
+    copula = rownames(VulnerTable_01)[i]
+    tau = as.numeric(colnames(VulnerTable_01)[j])
+    VulnerTable_01[i,j] = OneStudyVulnerability(copula = copula, tau = tau, seed = 100000 + i*j,
+                                                alpha = 0.01, beta = 0.01)
+  }
+}
+
+#Aggregating results
+fin01 = rbind(as.vector(BivTable_01), as.vector(MultiTable_01), as.vector(VulnerTable_01))
+rownames(fin01) = c("Bivariate", "Multi", "Vulnerability")
+colnames(fin01) = rep(c("Clayton", "Gumbel"),3)
+
+#Final table
+fin = rbind(fin05, fin01)
