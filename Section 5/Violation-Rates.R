@@ -780,34 +780,5 @@ Gumbel_CoVaR_rates = c(Gumbel_CoVaR_LTC_exc[[1]], Gumbel_CoVaR_XMR_exc[[1]],
 Exc_rates = cbind(norm_CoVaR_rates, t_CoVaR_rates, Patton_t_CoVaR_rates, 
                   DCC_t_CoVaR_rates, Clayton_CoVaR_rates, Gumbel_CoVaR_rates)
 rownames(Exc_rates) = c("Bivariate: LTC", "Bivariate: XMR", "Bivariate: XRP", "System", "Multi", "Vulnerability")
-
-############################## COMPARISON OF ABSOLUTE EXCEEDENCES #################################
-
-CoVar_theo_Exc = c("Bivariate: LTC" = length(VaR_LTC_exc), "Bivariate: XMR" = length(VaR_XMR_exc), 
-                   "Bivariate: XRP" = length(VaR_XRP_exc), "System" = length(VaR_Sys_exc), 
-                   "Multi" = length(intersect(VaR_LTC_exc, intersect(VaR_XMR_exc, VaR_XRP_exc))),
-                   "Vulnerability" = length(unique(c(VaR_LTC_exc, VaR_XMR_exc, VaR_XRP_exc))))*0.05
-norm_CoVaR_abs = c(norm_CoVaR_LTC_exc[[2]], norm_CoVaR_XMR_exc[[2]],
-                   norm_CoVaR_XRP_exc[[2]], norm_CoVaR_Sys_exc[[2]],
-                   norm_CoVaR_Multi_exc[[2]], norm_CoVaR_V_exc[[2]])
-t_CoVaR_abs = c(t_CoVaR_LTC_exc[[2]], t_CoVaR_XMR_exc[[2]],
-                t_CoVaR_XRP_exc[[2]], t_CoVaR_Sys_exc[[2]],
-                t_CoVaR_Multi_exc[[2]], t_CoVaR_V_exc[[2]])
-Patton_t_CoVaR_abs = c(Patton_CoVaR_LTC_exc[[2]], Patton_CoVaR_XMR_exc[[2]],
-                       Patton_CoVaR_XRP_exc[[2]], Patton_CoVaR_Sys_exc[[2]], NA, NA)
-DCC_t_CoVaR_abs = c(DCC_CoVaR_LTC_exc[[2]], DCC_CoVaR_XMR_exc[[2]], DCC_CoVaR_XRP_exc[[2]],
-                    DCC_CoVaR_Sys_exc[[2]], DCC_CoVaR_Multi_exc[[2]], DCC_CoVaR_V_exc[[2]])
-Clayton_CoVaR_abs = c(Clayton_CoVaR_LTC_exc[[2]], Clayton_CoVaR_XMR_exc[[2]],
-                      Clayton_CoVaR_XRP_exc[[2]], Clayton_CoVaR_Sys_exc[[2]],
-                      Clayton_CoVaR_Multi_exc[[2]], Clayton_CoVaR_V_exc[[2]])
-Gumbel_CoVaR_abs = c(Gumbel_CoVaR_LTC_exc[[2]], Gumbel_CoVaR_XMR_exc[[2]],
-                     Gumbel_CoVaR_XRP_exc[[2]], Gumbel_CoVaR_Sys_exc[[2]],
-                     Gumbel_CoVaR_Multi_exc[[2]], Gumbel_CoVaR_V_exc[[2]])
-
-Exc_abs = cbind(norm_CoVaR_abs, t_CoVaR_abs, Patton_t_CoVaR_abs, 
-                DCC_t_CoVaR_abs, Clayton_CoVaR_abs, Gumbel_CoVaR_abs)
-rownames(Exc_abs) = c("Bivariate: LTC", "Bivariate: XMR", "Bivariate: XRP", "System", "Multi", "Vulnerability")
-
-######################################## FINAL RESULTS ############################################
 round(Exc_rates,4)
-Exc_abs
+
