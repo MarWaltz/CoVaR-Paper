@@ -236,3 +236,71 @@ round(fitLTC@fit$se.coef,4)
 round(fitXMR@fit$se.coef,4)
 round(fitXRP@fit$se.coef,4)
 round(fitSys@fit$se.coef,4)
+
+#AIC and test tables
+#BTC
+colBTC = round(c("AIC" = infocriteria(fitBTC)[1]*length(rBTC), #'rugarch' computes AIC per observation
+                 "LB" = Box.test(as.numeric(residuals(fitBTC, standardize = T)), lag = 8, 
+                                 fitdf = 2, type = c("Ljung-Box"))$p.value,
+                 "LBsq" = Box.test(as.numeric(residuals(fitBTC, standardize = T))^2, lag = 8, 
+                                   fitdf = 3, type = c("Ljung-Box"))$p.value,
+                 "WLM" = Weighted.LM.test(as.numeric(residuals(fitBTC)), h.t = as.numeric(sigma(fitBTC))^2, 
+                                          weighted = T, lag = 8, type = "correlation", fitdf = 3)$p.value,
+                 "Sign Bias" = signbias(fitBTC)[1,2],
+                 "Neg. Sign Bias" = signbias(fitBTC)[2,2],
+                 "Pos. Sign Bias" = signbias(fitBTC)[3,2],
+                 "Joint effect"= signbias(fitBTC)[4,2]),4)
+
+#LTC
+colLTC = round(c("AIC" = infocriteria(fitLTC)[1]*length(rLTC),
+                 "LB" = Box.test(as.numeric(residuals(fitLTC, standardize = T)), lag = 8, 
+                                 fitdf = 0, type = c("Ljung-Box"))$p.value,
+                 "LBsq" = Box.test(as.numeric(residuals(fitLTC, standardize = T))^2, lag = 8, 
+                                   fitdf = 2, type = c("Ljung-Box"))$p.value,
+                 "WLM" = Weighted.LM.test(as.numeric(residuals(fitLTC)), h.t = as.numeric(sigma(fitLTC))^2, 
+                                          weighted = T, lag = 8, type = "correlation", fitdf = 2)$p.value,
+                 "Sign Bias" = signbias(fitLTC)[1,2],
+                 "Neg. Sign Bias" = signbias(fitLTC)[2,2],
+                 "Pos. Sign Bias" = signbias(fitLTC)[3,2],
+                 "Joint effect"= signbias(fitLTC)[4,2]),4)
+
+#XMR
+colXMR = round(c("AIC" = infocriteria(fitXMR)[1]*length(rXMR),
+                 "LB" = Box.test(as.numeric(residuals(fitXMR, standardize = T)), lag = 8, 
+                                 fitdf = 0, type = c("Ljung-Box"))$p.value,
+                 "LBsq" = Box.test(as.numeric(residuals(fitXMR, standardize = T))^2, lag = 8, 
+                                   fitdf = 7, type = c("Ljung-Box"))$p.value,
+                 "WLM" = Weighted.LM.test(as.numeric(residuals(fitXMR)), h.t = as.numeric(sigma(fitXMR))^2, 
+                                          weighted = T, lag = 8, type = "correlation", fitdf = 7)$p.value,
+                 "Sign Bias" = signbias(fitXMR)[1,2],
+                 "Neg. Sign Bias" = signbias(fitXMR)[2,2],
+                 "Pos. Sign Bias" = signbias(fitXMR)[3,2],
+                 "Joint effect"= signbias(fitXMR)[4,2]),4)
+
+#XRP
+colXRP = round(c("AIC" = infocriteria(fitXRP)[1]*length(rXRP),
+                 "LB" = Box.test(as.numeric(residuals(fitXRP, standardize = T)), lag = 8, 
+                                 fitdf = 0, type = c("Ljung-Box"))$p.value,
+                 "LBsq" = Box.test(as.numeric(residuals(fitXRP, standardize = T))^2, lag = 8, 
+                                   fitdf = 2, type = c("Ljung-Box"))$p.value,
+                 "WLM" = Weighted.LM.test(as.numeric(residuals(fitXRP)), h.t = as.numeric(sigma(fitXRP))^2, 
+                                          weighted = T, lag = 8, type = "correlation", fitdf = 2)$p.value,
+                 "Sign Bias" = signbias(fitXRP)[1,2],
+                 "Neg. Sign Bias" = signbias(fitXRP)[2,2],
+                 "Pos. Sign Bias" = signbias(fitXRP)[3,2],
+                 "Joint effect"= signbias(fitXRP)[4,2]),4)
+
+#System
+colSys = round(c("AIC" = infocriteria(fitSys)[1]*length(rSys),
+                 "LB" = Box.test(as.numeric(residuals(fitSys, standardize = T)), lag = 8, 
+                                 fitdf = 0, type = c("Ljung-Box"))$p.value,
+                 "LBsq" = Box.test(as.numeric(residuals(fitSys, standardize = T))^2, lag = 8, 
+                                   fitdf = 6, type = c("Ljung-Box"))$p.value,
+                 "WLM" = Weighted.LM.test(as.numeric(residuals(fitSys)), h.t = as.numeric(sigma(fitSys))^2, 
+                                          weighted = T, lag = 8, type = "correlation", fitdf = 6)$p.value,
+                 "Sign Bias" = signbias(fitSys)[1,2],
+                 "Neg. Sign Bias" = signbias(fitSys)[2,2],
+                 "Pos. Sign Bias" = signbias(fitSys)[3,2],
+                 "Joint effect"= signbias(fitSys)[4,2]),4)
+
+res = cbind("BTC" = colBTC, "LTC" = colLTC, "XMR" = colXMR, "XRP" = colXRP, "System" = colSys)
