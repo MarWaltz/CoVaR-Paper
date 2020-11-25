@@ -1,4 +1,4 @@
-#Note: The calculations in this file take approximately 1h on an Intel(R) Xeon(R) 
+#Note: The calculations in this file take approximately 1.5h on an Intel(R) Xeon(R) 
 #      Gold 6136 CPU with 3.00 GHz on a 64-Bit Windows Server 2016 with 24 processors.
 
 library("copula")
