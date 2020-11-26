@@ -217,11 +217,11 @@ signbias(fitBTC)
 
 
 #Optimal Models:
-#BTC: ARMA(1,1)-GJR-GARCH(3,0) with mu
+#BTC: ARMA(1,1)-GJR-ARCH(3) with mu
 #LTC: GARCH(1,1) without mu
 #XMR: GARCH(6,1) without mu
 #XRP: GARCH(1,1) with mu
-#SYS: GARCH(6,0) without mu
+#SYS: ARCH(6) without mu
 
 #Parameters
 round(coef(fitBTC),4)
