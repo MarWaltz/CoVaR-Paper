@@ -224,11 +224,11 @@ signbias(fitBTC)
 #SYS: GARCH(6,0) without mu
 
 #Parameters
-coef(fitBTC)
-coef(fitLTC)
-coef(fitXMR)
-coef(fitXRP)
-coef(fitSys)
+round(coef(fitBTC),4)
+round(coef(fitLTC),4)
+round(coef(fitXMR),4)
+round(coef(fitXRP),4)
+round(coef(fitSys),4)
 
 #Standard errors
 round(fitBTC@fit$se.coef,4)
