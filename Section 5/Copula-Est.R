@@ -215,28 +215,28 @@ ObjectiveF = function(param, data){
 out_BTC_LTC = nloptr(x0 = c(0.5, 0.5, 0.5, 4), eval_f = ObjectiveF, lb = c(-Inf, -Inf, -Inf, 2),
                      ub = c(Inf, Inf, Inf, 200), opts = list(algorithm = "NLOPT_LN_COBYLA", xtol_rel = 1e-04),
                      data = cbind(v, u1))
-round(out_BTC_LTC$solution,4) #parameter estimates in order: omega_theta, beta_theta, c_theta, v
+round(out_BTC_LTC$solution,3) #parameter estimates in order: omega_theta, beta_theta, c_theta, v
 2*(length(coef(fitrBTC)) + length(coef(fitrLTC)) + length(out_BTC_LTC$solution))-2*(-out_BTC_LTC$objective + fitrBTC@fit$LLH + fitrLTC@fit$LLH) #AIC
 
 #BTC-XMR
 out_BTC_XMR = nloptr(x0 = c(0.5, 0.5, 0.5, 4), eval_f = ObjectiveF, lb = c(-Inf, -Inf, -Inf, 2),
                      ub = c(Inf, Inf, Inf, 200), opts = list(algorithm = "NLOPT_LN_COBYLA", xtol_rel = 1e-04),
                      data = cbind(v, u2))
-round(out_BTC_XMR$solution,4) #parameter estimates in order: omega_theta, beta_theta, c_theta, v
+round(out_BTC_XMR$solution,3) #parameter estimates in order: omega_theta, beta_theta, c_theta, v
 2*(length(coef(fitrBTC)) + length(coef(fitrXMR)) + length(out_BTC_XMR$solution))-2*(-out_BTC_XMR$objective + fitrBTC@fit$LLH + fitrXMR@fit$LLH) #AIC
 
 #BTC-XRP
 out_BTC_XRP = nloptr(x0 = c(0.5, 0.5, 0.5, 4), eval_f = ObjectiveF, lb = c(-Inf, -Inf, -Inf, 2),
                      ub = c(Inf, Inf, Inf, 200), opts = list(algorithm = "NLOPT_LN_COBYLA", xtol_rel = 1e-04),
                      data = cbind(v, u3))
-round(out_BTC_XRP$solution,4) #parameter estimates in order: omega_theta, beta_theta, c_theta, v
+round(out_BTC_XRP$solution,3) #parameter estimates in order: omega_theta, beta_theta, c_theta, v
 2*(length(coef(fitrBTC)) + length(coef(fitrXRP)) + length(out_BTC_XRP$solution))-2*(-out_BTC_XRP$objective + fitrBTC@fit$LLH + fitrXRP@fit$LLH) #AIC
 
 #BTC-System
 out_BTC_Sys = nloptr(x0 = c(0.5, 0.5, 0.5, 4), eval_f = ObjectiveF, lb = c(-Inf, -Inf, -Inf, 2),
                      ub = c(Inf, Inf, Inf, 200), opts = list(algorithm = "NLOPT_LN_COBYLA", xtol_rel = 1e-04),
                      data = cbind(v, u4))
-round(out_BTC_Sys$solution,4) #parameter estimates in order: omega_theta, beta_theta, c_theta, v
+round(out_BTC_Sys$solution,3) #parameter estimates in order: omega_theta, beta_theta, c_theta, v
 2*(length(coef(fitrBTC)) + length(coef(fitrSys)) + length(out_BTC_Sys$solution))-2*(-out_BTC_Sys$objective + fitrBTC@fit$LLH + fitrSys@fit$LLH) #AIC
 
 
